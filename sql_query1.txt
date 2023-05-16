@@ -1,0 +1,66 @@
+USE `artgallerysystem`;
+DROP TABLE IF EXISTS `product`;
+CREATE TABLE `product` (
+  `product_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `product_title` varchar(45) DEFAULT NULL,
+  `artist` varchar(45) DEFAULT NULL,
+  `product_description` text DEFAULT NULL,
+  `product_quantity` int(11) DEFAULT NULL,
+  `product_quantity_available` int(11) DEFAULT NULL,
+  `category` varchar(11) DEFAULT NULL,
+  `product_image` MEDIUMBLOB  DEFAULT NULL,
+  PRIMARY KEY (`product_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `reviews`;
+CREATE TABLE `reviews` (
+  `review_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `user_email` varchar(45) DEFAULT NULL,
+  `date` datetime(6) DEFAULT NULL,
+  `rating` decimal (3,2) DEFAULT NULL,
+  `product_id` BIGINT(20) DEFAULT NULL,
+  `review_description` text DEFAULT NULL,
+  PRIMARY KEY (`review_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `addtocart`;
+CREATE TABLE `addtocart` (
+  `addtocart_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `user_email` varchar(45) DEFAULT NULL,
+  `addtocart_date` varchar(45) DEFAULT NULL,
+  `product_id` BIGINT(20) DEFAULT NULL,
+  PRIMARY KEY (`addtocart_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `cart`;
+CREATE TABLE `cart` (
+  `cart_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `user_email` varchar(45) DEFAULT NULL,
+  `addtocart_date` varchar(45) DEFAULT NULL,
+  `product_title` varchar(45) DEFAULT NULL,
+  `artist` varchar(45) DEFAULT NULL,
+  `product_description` text DEFAULT NULL,
+  `product_image` MEDIUMBLOB  DEFAULT NULL,
+  PRIMARY KEY (`cart_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+UNLOCK TABLES;
+DROP TABLE IF EXISTS `history`;
+CREATE TABLE `history` (
+  `history_id` INT(20) NOT NULL AUTO_INCREMENT,
+  `user_email` varchar(45) DEFAULT NULL,
+  `checkout_date` varchar(45) DEFAULT NULL,
+  `return_date` varchar(45) DEFAULT NULL,
+  `product_title` varchar(45) DEFAULT NULL,
+  `artist` varchar(45) DEFAULT NULL,
+  `product_description` text DEFAULT NULL,
+  `product_image` MEDIUMBLOB  DEFAULT NULL,
+  PRIMARY KEY (`history_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `messages`;
+CREATE TABLE `messages` (
+  `message_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `user_email` varchar(45) DEFAULT NULL,
+  `product_title` varchar(45) DEFAULT NULL,
+  `question` text DEFAULT NULL,
+  `admin_email` varchar(45) DEFAULT NULL,
+  `response` text DEFAULT NULL,
+  `closed` tinyint(1) DEFAULT 0,
+  PRIMARY KEY (`message_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
